@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<listenerPort>59990</listenerPort>
+	<allowedHosts>localhost, bbaprh601, 10.88.13.0/24</allowedHosts>
+	<pollDelay>5000</pollDelay>
+	<pollMax>60</pollMax>
+	<defaultThreadSleepTime>3000</defaultThreadSleepTime>
+	<processControlDelay>10000</processControlDelay>
+	<debug>true</debug>
+	<loop>true</loop>
+	<performanceTiming>false</performanceTiming>
+	<logFolder>log</logFolder>
+	<mainLogFile>reporting.log</mainLogFile>
+	<!-- ====================================================== -->
+	<email>
+		<smtpHost>mailrelay.pma.pmagroup.com</smtpHost>
+		<defaultFrom>"RJP (dev)" &lt;BI_Team@pmagroup.com&gt;</defaultFrom>
+		<defaultRecipients>
+			<recipient>chazz_mevoli@pmagroup.com</recipient>
+		</defaultRecipients>
+	</email>
+	<!-- ====================================================== -->
+	<hyperion>
+		<host>localhost</host>
+		<port>6800</port>
+		<user>rjp</user>
+		<pass>hyp9pass</pass>
+	</hyperion>
+	<!-- ====================================================== -->
+	<database>
+		<reporting>
+			<url>jdbc:sqlserver://reporting_dbserver_dev;databaseName=reporting</url>
+			<user>hyperion</user>
+			<pass>hyperion</pass>
+		</reporting>
+		<ucd>
+			<url>jdbc:sqlserver://ucd_dbserver_p;databaseName=universal_customer_database_prod</url>
+			<user>cpsuser</user>
+			<pass>cpsuser</pass>
+		</ucd>
+	</database>
+	<!-- ====================================================== -->
+	<icm>
+		<xmlImportTemplate>config/imagingImportTemplate.xml</xmlImportTemplate>
+		<xmlImportArchive>/data/hyperion/icm_archive/xml</xmlImportArchive>
+		<xmlImportFolder>icmstor/xml</xmlImportFolder>
+		<imageImportFolder>icmstor/image</imageImportFolder>
+	</icm>
+	<!-- ====================================================== -->
+	<mq>
+		<hostname>BBAP2K8203</hostname>
+		<port>1444</port>
+		<channel>TO.8203CL</channel>
+		<queueName>ICM.BI_MESSAGE.OUT</queueName>
+		<queueManager>WTS07</queueManager>
+	</mq>
+	<!-- ====================================================== -->
+	<printing>
+		<labelX>215</labelX>
+		<labelY>340</labelY>
+		<labelFontSize>10</labelFontSize>
+		<labelLineSpacing>2</labelLineSpacing>
+		<pageCountThreshold>250</pageCountThreshold>
+	</printing>
+	<!-- ====================================================== -->
+	<queues>
+		<report>on</report>
+		<assembly>on</assembly>
+		<import>off</import>
+		<email>off</email>
+		<print>off</print>
+	</queues>
+	<!-- ====================================================== -->
+	<threads>
+		<thread>com.pma.reporting.plugins.amps.AMPSProcessControlThread</thread>
+		<thread>com.pma.reporting.plugins.cinch.CinchProcessControlThread</thread>
+		<thread>com.pma.reporting.plugins.cinch.CinchUserManagementThread</thread>
+		<thread>com.pma.reporting.plugins.cinch.LARFUCDIntegrationThread</thread>
+	</threads>
+	<!-- ====================================================== -->
+	  </distribution>
+    <!-- = = = = = = = = = -->
+    <distribution id="6" name="AMPSPrinted">
+      <description>AMPS Printed</description>
+      <class>com.pma.reporting.plugins.amps.AMPSPrintedPlugin</class>
+      <priority>102</priority>
+    </distribution>
+    <!-- = = = = = = = = = -->
+    <distribution id="3" name="LARFEmail">
+      <description>LARF Email</description>
+      <class>com.pma.reporting.plugins.larf.LARFEmailPlugin</class>
+      <priority>201</priority>
+    </distribution>
+    <!-- = = = = = = = = = -->
+    <distribution id="2" name="CinchPrinted">
+      <description>Cinch Printed</description>
+      <class>com.pma.reporting.plugins.larf.CinchPrintedPlugin</class>
+      <priority>202</priority>
+    </distribution>
+    <!-- = = = = = = = = = -->
+    <distribution id="4" name="LARFPrinted">
+      <description>LARF Printed</description>
+      <class>com.pma.reporting.plugins.larf.LARFPrintedPlugin</class>
+      <priority>203</priority>
+    </distribution>
+    <!-- = = = = = = = = = -->
+    <distribution id="1" name="CinchOnline">
+      <description>Cinch Online</description>
+      <class>com.pma.reporting.plugins.cinch.CinchPlugin</class>
+      <priority>204</priority>
+    </distribution>
+    <!-- = = = = = = = = = -->
+  </distributions>
+	<!-- ====================================================== -->
+</config>
