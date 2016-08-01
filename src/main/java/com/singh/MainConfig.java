@@ -41,8 +41,5 @@ public interface MainConfig extends Config {
 	
 	@Key("config.email.smtpHost")
 	String smtpHost();
-	
-	
-	
 		
 }
