@@ -13,30 +13,30 @@
 	<mainLogFile>reporting.log</mainLogFile>
 	<!-- ====================================================== -->
 	<email>
-		<smtpHost>mailrelay.pma.pmagroup.com</smtpHost>
-		<defaultFrom>"RJP (dev)" &lt;BI_Team@pmagroup.com&gt;</defaultFrom>
+		<smtpHost>mailrelay.com.test.com</smtpHost>
+		<defaultFrom>"RJP (dev)" &lt;te@test.com&gt;</defaultFrom>
 		<defaultRecipients>
-			<recipient>chazz_mevoli@pmagroup.com</recipient>
+			<recipient>test@ted.com</recipient>
 		</defaultRecipients>
 	</email>
 	<!-- ====================================================== -->
 	<hyperion>
 		<host>localhost</host>
 		<port>6800</port>
-		<user>rjp</user>
-		<pass>hyp9pass</pass>
+		<user>test</user>
+		<pass>testpass</pass>
 	</hyperion>
 	<!-- ====================================================== -->
 	<database>
 		<reporting>
-			<url>jdbc:sqlserver://reporting_dbserver_dev;databaseName=reporting</url>
-			<user>hyperion</user>
-			<pass>hyperion</pass>
+			<url>jdbc:sqlserver://testing;databaseName=testdb</url>
+			<user>oracle</user>
+			<pass>oracle</pass>
 		</reporting>
 		<ucd>
-			<url>jdbc:sqlserver://ucd_dbserver_p;databaseName=universal_customer_database_prod</url>
-			<user>cpsuser</user>
-			<pass>cpsuser</pass>
+			<url>jdbc:sqlserver://testServer;databaseName=testdb</url>
+			<user>testuser</user>
+			<pass>userpass</pass>
 		</ucd>
 	</database>
 	<!-- ====================================================== -->
@@ -48,11 +48,11 @@
 	</icm>
 	<!-- ====================================================== -->
 	<mq>
-		<hostname>BBAP2K8203</hostname>
-		<port>1444</port>
-		<channel>TO.8203CL</channel>
-		<queueName>ICM.BI_MESSAGE.OUT</queueName>
-		<queueManager>WTS07</queueManager>
+		<hostname>BBB</hostname>
+		<port>143444</port>
+		<channel>TO.823033CL</channel>
+		<queueName>ICMR.BI_MESSAGE.ROUT</queueName>
+		<queueManager>WTES07</queueManager>
 	</mq>
 	<!-- ====================================================== -->
 	<printing>
@@ -72,41 +72,41 @@
 	</queues>
 	<!-- ====================================================== -->
 	<threads>
-		<thread>com.pma.reporting.plugins.amps.AMPSProcessControlThread</thread>
-		<thread>com.pma.reporting.plugins.cinch.CinchProcessControlThread</thread>
-		<thread>com.pma.reporting.plugins.cinch.CinchUserManagementThread</thread>
-		<thread>com.pma.reporting.plugins.cinch.LARFUCDIntegrationThread</thread>
+		<thread>com.reporting.plugins.amps.AMPSProcessControlThread</thread>
+		<thread>com.reporting.plugins.cinch.CinchProcessControlThread</thread>
+		<thread>com.reporting.plugins.cinch.CinchUserManagementThread</thread>
+		<thread>com.reporting.plugins.cinch.LARFUCDIntegrationThread</thread>
 	</threads>
 	<!-- ====================================================== -->
 	  </distribution>
     <!-- = = = = = = = = = -->
     <distribution id="6" name="AMPSPrinted">
       <description>AMPS Printed</description>
-      <class>com.pma.reporting.plugins.amps.AMPSPrintedPlugin</class>
+      <class>com.reporting.plugins.amps.AMPSPrintedPlugin</class>
       <priority>102</priority>
     </distribution>
     <!-- = = = = = = = = = -->
     <distribution id="3" name="LARFEmail">
       <description>LARF Email</description>
-      <class>com.pma.reporting.plugins.larf.LARFEmailPlugin</class>
+      <class>com.reporting.plugins.larf.LARFEmailPlugin</class>
       <priority>201</priority>
     </distribution>
     <!-- = = = = = = = = = -->
     <distribution id="2" name="CinchPrinted">
       <description>Cinch Printed</description>
-      <class>com.pma.reporting.plugins.larf.CinchPrintedPlugin</class>
+      <class>com.reporting.plugins.larf.CinchPrintedPlugin</class>
       <priority>202</priority>
     </distribution>
     <!-- = = = = = = = = = -->
     <distribution id="4" name="LARFPrinted">
       <description>LARF Printed</description>
-      <class>com.pma.reporting.plugins.larf.LARFPrintedPlugin</class>
+      <class>com.reporting.plugins.larf.LARFPrintedPlugin</class>
       <priority>203</priority>
     </distribution>
     <!-- = = = = = = = = = -->
     <distribution id="1" name="CinchOnline">
       <description>Cinch Online</description>
-      <class>com.pma.reporting.plugins.cinch.CinchPlugin</class>
+      <class>com.reporting.plugins.cinch.CinchPlugin</class>
       <priority>204</priority>
     </distribution>
     <!-- = = = = = = = = = -->
